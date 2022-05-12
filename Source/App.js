@@ -1,24 +1,29 @@
-import {Image} from 'react-native';
-import 'react-native-gesture-handler';
-import  React, {Component} from 'react';
-import HomeScreen from '../source/src/Home';
-import UserScreen from '../source/src/User';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View,Platform, SafeAreaView, StatusBar, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-const Stack=createStackNavigator();
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 
-export default function App() {
+//각 화면 파일 불러오기
+import MainScreen from './Components/MainScreen';
+import ScanFood from './Components/ScanFood';
+import ScanResults from './Components/ScanResult';
+import NutritionFacts from './Components/NutritionFacts';
 
-  return (
+
+const Stack = createStackNavigator();
+
+//각 화면 구성
+export default function App() {  //initialRouteName 나중에 main으로 바꿔줘야함!!!!!!
+  return(
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-            <Stack.Screen name ='Home' component={HomeScreen}/>
-            <Stack.Screen name ='User' component={UserScreen}/>
-        </Stack.Navigator>
+      <Stack.Navigator initialRouteName='MainScreen'>
+        
+        <Stack.Screen name='MainScreen' component={MainScreen} options={{headerShown:false}}/>
+        <Stack.Screen name='ScanFood' component={ScanFood} options={{headerShown:false}}/>
+        <Stack.Screen name='ScanResults' component={ScanResults} options={{headerShown:false}}/>
+        <Stack.Screen name='NutritionFacts' component={NutritionFacts} options={{headerShown:false}} />
+
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
-
