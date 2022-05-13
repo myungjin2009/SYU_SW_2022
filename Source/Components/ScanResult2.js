@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
+const { height: SCREEN_HEIGHT} = Dimensions.get("window");
 export default function ScanResults2({route, navigation}) {
 
   return (
@@ -32,36 +32,39 @@ export default function ScanResults2({route, navigation}) {
       </View>
       <View style={styles.body3}>
       <View style={styles.Imagebox}>
-      <Image
+       <Image
                 source={{uri:route.params.image}} style={styles.image}
-            />      
+            />     
       </View>
       <View style={styles.Imagebox}>
 
       </View>      
         
       </View>
-      <ScrollView horizontal style={styles.word}>
+      <View style={styles.scrollpart}>
+      <ScrollView horizontal style={styles.word1}>
             <View style={styles.little_word}><Text style={styles.little_text}>치아바타</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>호밀빵 샌드위치</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>햄 샐러드</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>목살구이</Text></View>
             
       </ScrollView>  
-      <ScrollView horizontal style={styles.word}>
+      <ScrollView horizontal style={styles.word2}>
             <View style={styles.little_word}><Text style={styles.little_text}>봉구스 밥버거</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>태그추가+</Text></View>
       </ScrollView>  
       </View>
+      </View>
+
       <View style={styles.body4}>
-        <View>
+        
           <Text style={styles.body4Text} > <Icon name="warning" size={18}  style={styles.warning} /> 오늘의 한끼를 표현할 마땅한 태그가 없다면</Text>
           <View style={styles.body4re}>
           <View style={styles.little_word2}><Text style={styles.little_text2}>다시 촬영</Text></View>
           <View style={styles.little_word2}><Text style={styles.little_text2}>직접 입력</Text></View>
           </View>
           <View style={styles.little_word3}><Text style={styles.little_text3}>저장</Text></View>
-        </View>
+        
 
       </View>
 
@@ -128,12 +131,14 @@ const styles = StyleSheet.create({
    backgroundColor:"#FFFFFF"
   },
   body3:{
+    
     flexDirection: 'row',
   },
   Imagebox: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#f7f7fb',
+    width: Dimensions.get('window').width/2,
+    height: Dimensions.get('window').width/2,
+    //backgroundColor: '#f7f7fb',
+    backgroundColor:"black",
     borderStyle: 'solid',
     borderColor: '#f7f7fb',
     borderWidth: 1,
@@ -141,21 +146,30 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
   },
-  word:{
+  word1:{
+    marginTop:20,
+    
     backgroundColor: "#FFFFFF",
-    flexGrow:0,
-   
-    marginTop:20
+    height: SCREEN_HEIGHT/12,
+    //flexGrow:1,
+  },
+  word2:{
+    marginTop:5,
+    backgroundColor: "#FFFFFF",
+    height: SCREEN_HEIGHT/12,
+    //flexGrow:1,
   },
   little_word:{
+    flex:0.5,
     justifyContent: 'center',
     alignContent:"center",
     borderRadius : 40,
     width: SCREEN_WIDTH/5,
-    height: 40,
+    height: SCREEN_HEIGHT/18,
     backgroundColor: "rgba(108, 110, 201, 0.8)",
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
+    
   },
   little_text:{
     textAlign:'center',
@@ -177,7 +191,8 @@ const styles = StyleSheet.create({
   },
   body4re:{
     flexDirection: 'row',
-    marginTop: 10
+    marginTop: 10,
+    flex: 0.3
   },
   little_word2:{
     justifyContent: 'center',
@@ -198,13 +213,14 @@ const styles = StyleSheet.create({
     color:"#888888"
   },
   little_word3:{
+    flex:0.4,
     justifyContent: 'center',
     alignContent:"center",
     borderRadius : 8,
-    height: 50,
+    marginBottom:-20,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 85,
+    marginTop: 65,
     backgroundColor: '#ffffff',
     borderStyle: 'solid',
     borderColor: '#6366ED',
@@ -224,6 +240,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 8
+   },
+   scrollpart:{
+     flex:1,
    }
 
 

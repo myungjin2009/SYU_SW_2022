@@ -38,8 +38,8 @@ export default function UserScreen({route, navigation }){
           </View>
           <View style={styles.middle_camera}>
           <Image
-            source={{uri:route.params.image}} style={styles.image}
-          />
+                source={{uri:route.params.image}} style={styles.image}
+            /> 
           </View>
 
           <ScrollView  showsHorizontalScrollIndicator={false} horizontal style={styles.word}>
@@ -97,14 +97,14 @@ const styles = StyleSheet.create({
     right:0,
     marginRight:15, 
     marginBottom: 30,
-    fontSize: 22,
+    fontSize: 25,
     color:"#051898"
   },
   Top_Text2:{
     position:"absolute",
     left:55,
     marginRight:5, 
-    fontSize: 22,
+    fontSize: 25,
   },
   arrowBack: {
     marginLeft: 10,
@@ -137,19 +137,21 @@ const styles = StyleSheet.create({
     borderRadius : 8
   },
   middle_text1:{
-    fontSize: 30,
+    flex:1,
+    fontSize: 26,
     textAlign: "center",
-    marginTop: 15,
+    marginTop:10,
     color:"white"
   },
   middle_text2:{
-    fontSize: 18,
-    marginTop: 15,
+    flex:1,
+    fontSize: 15,
+    marginTop: 10,
     textAlign: "center",
     color:"white"
   },
   OnMiddle_camera:{
-    
+    marginTop:10,
     marginBottom: 30,
     marginLeft: 20,
     marginRight: 20,
@@ -168,7 +170,7 @@ const styles = StyleSheet.create({
     alignContent:"center",
     borderRadius : 40,
     width: SCREEN_WIDTH/5,
-    height: 40,
+    height: SCREEN_HEIGHT/18,
     backgroundColor: "rgba(108, 110, 201, 0.8)",
     marginLeft: 5,
     marginRight: 5
