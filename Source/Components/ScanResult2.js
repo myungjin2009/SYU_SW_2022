@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
   },
   Text001: {
     flex: 5,
-    fontSize: 20,
+    fontSize: 25,
+    marginRight:45
   },
   search: {
     flex:0.8,
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#f7f7fb',
     borderWidth: 1,
-    borderRadius: 15,
+    borderRadius: 8,
     marginTop: 20,
     marginLeft: 20,
   },

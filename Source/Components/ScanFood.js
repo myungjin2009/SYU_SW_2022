@@ -3,12 +3,15 @@ import {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Dimensions, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera } from 'expo-camera';
-
+import { NavigationContainer} from '@react-navigation/native';
 
 export default function App({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);   //카메라 권한
   const [type, setType] = useState(Camera.Constants.Type.back); //카메라 방향, 지금은 미사용
   const [camera, setCamera] = useState(null);
+  
+
+    ////////////////////////////////////
 
   useEffect(() => {
     (async () => {
@@ -24,6 +27,8 @@ export default function App({navigation}) {
       navigation.navigate('ScanResults',{image:`data:image/jpeg;base64,${data.base64}`});
     }
   };
+
+  
 
   return (
     <View style={styles.container}>
@@ -77,13 +82,16 @@ const styles = StyleSheet.create({
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   TopNavigation: {
-    position: 'relative',
-    height: 70,
-    backgroundColor: "white",
     width: Dimensions.get('window').width,
-    flexDirection: 'column',
-    
-    justifyContent: "center",
+    height: 70,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   Top_Text:{
     position:"absolute",

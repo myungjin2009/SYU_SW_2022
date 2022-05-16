@@ -12,6 +12,12 @@ import { NavigationContainer } from '@react-navigation/native';
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
+
+function clickBtnFunction(navigation){
+  /* 코드 작성 */
+  navigation.navigate('ScanFood');
+}
+
 export default function UserScreen({route, navigation }){
   
     
@@ -25,9 +31,9 @@ export default function UserScreen({route, navigation }){
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
           <View style={styles.TopNavigation}>
-            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
+            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>{clickBtnFunction(navigation)}}/>
             <Text style={styles.Top_Text2}>식사 촬영</Text>
-            
+           
             <Text onPress={() => {navigation.navigate('NutritionFacts',{image:route.params.image}); }} style={styles.Top_Text}>다음</Text>
           
           </View>
@@ -85,12 +91,17 @@ const styles = StyleSheet.create({
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   TopNavigation: {
-    position: 'relative',
-    height: 70,
-    backgroundColor: "white",
-    width: Dimensions.get('window').width,
     
-    justifyContent: "center",
+    width: Dimensions.get('window').width,
+    height: 70,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   Top_Text:{
     position:"absolute",
@@ -108,6 +119,7 @@ const styles = StyleSheet.create({
   },
   arrowBack: {
     marginLeft: 10,
+
   },
 
   CameraView: {
