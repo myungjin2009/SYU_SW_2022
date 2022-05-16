@@ -88,13 +88,15 @@ function clickBtnFunction(navigation){
 
 export default function AppView ({navigation}){
     
+    const [isShowTest, setIsShowTest] = React.useState(false);
+
     return (
       <View style={styles.container}>
         <View style={{ flex: 1, backgroundColor: 'pink' }} />
         
         <View style={{ flex: 2, backgroundColor: 'gray' }}></View>
         
-        <View style={{ flex: 2, backgroundColor: 'black' }}>
+        {isShowTest && <View style={{position:'absolute', marginTop:200 ,width: 300, height: 400, backgroundColor: 'black' }}>
         
           <View style={styles.container_2}>
             
@@ -130,11 +132,11 @@ export default function AppView ({navigation}){
                 <Text>간식🍓</Text>
               </TouchableHighlight>
           </View>  
-        </View>
+        </View>}
 
         <View style={styles.footer}>
            <Icon name="home" size={50} color="pink" style={styles.home} />
-           <Icon3 name="pluscircleo" size={50} color="pink" style={styles.home} />
+           <Icon3 name="pluscircleo" size={50} color="pink" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false)}/>
            <Icon2 name="user-circle" size={50} color="pink" style={styles.home} />
         </View>
       </View>
