@@ -13,12 +13,16 @@ const styles = StyleSheet.create({
   container_2:{
     flex: 1,
     flexDirection:'row',
-    marginBottom: -100
+    marginBottom: -150
   },
   container_3: {
     flex: 1,
     flexDirection:'row',
-    marginBottom: -30
+    marginBottom: -20
+  },
+
+  container_4:{
+    flex: 1,
   },
 
   button_1: {
@@ -92,26 +96,30 @@ export default function AppView ({navigation}){
 
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1, backgroundColor: 'pink' }} />
+        <View style={{ flex: 1, backgroundColor: '#6C6EC9' }} />
         
-        <View style={{ flex: 2, backgroundColor: 'gray' }}></View>
+        <View style={{ flex: 2, backgroundColor: 'gray' }}>
+        <Text>Main page css</Text>
+        </View>
         
-        {isShowTest && <View style={{position:'absolute', marginTop:200 ,width: 300, height: 400, backgroundColor: 'black' }}>
-        
+        {isShowTest && <View style={{position:'absolute', alignItems: 'center',borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350, backgroundColor: 'white' }}>
+        <Text>식사를 기록해 주세요</Text>
           <View style={styles.container_2}>
-            
+           
               <TouchableHighlight 
+                
                 onPress={()=>{clickBtnFunction(navigation)}}
                 underlayColor="#DFDFF3"
                 style={styles.button_1}>
                 <Text>아침🍎</Text>
+                
               </TouchableHighlight>
-          
+              
               <TouchableHighlight 
-              onPress={()=>{clickBtnFunction(navigation)}}
-              underlayColor="#DFDFF3"
-              style={styles.button_2}>
-              <Text>점심🍲</Text>
+                onPress={()=>{clickBtnFunction(navigation)}}
+                underlayColor="#DFDFF3"
+                style={styles.button_2}>
+                <Text>점심🍲</Text>
           </TouchableHighlight>
           
           </View>
@@ -135,9 +143,9 @@ export default function AppView ({navigation}){
         </View>}
 
         <View style={styles.footer}>
-           <Icon name="home" size={50} color="pink" style={styles.home} />
-           <Icon3 name="pluscircleo" size={50} color="pink" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false)}/>
-           <Icon2 name="user-circle" size={50} color="pink" style={styles.home} />
+           <Icon name="home" size={50} color="#6C6EC9" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(false): setIsShowTest(false)}/>
+           <Icon3 name="pluscircleo" size={50} color="#6C6EC9" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false)}/>
+           <Icon2 name="user-circle" size={50} color="#6C6EC9" style={styles.home} />
         </View>
       </View>
     );
