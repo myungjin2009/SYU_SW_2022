@@ -1,33 +1,68 @@
-import React, {useState, setState} from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image } from 'react-native';
 import { 
   StyleSheet, 
-  Text, View, 
-  Dimensions, 
+  Text,
+  View, 
+  Dimensions,
   ScrollView, 
-  Button,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import DatePicker, { registerLocale } from "react-datepicker";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { ProgressBar, Colors } from 'react-native-paper'
+import { ProgressBar } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App({route, navigation}) {
+  
+  const [howManyEat, setHowManyEat] = React.useState(0);
+  const [aftereatStatus, setAftereatStatus] = React.useState({
+    "양호해요": false,
+    "입맛이없어요" : false,
+    "구내염" : false,
+    "조기포만감" : false,
+    "연하곤란/삼킴곤란" : false,
+    "소화불량" : false,
+    "복부불편감" : false,
+    "잠시후에입력할게요" : false
+  });
+
+  const [test,setTest] = React.useState(0);
+  const [open, setOpen] = React.useState(false)
+
+  React.useEffect(() => {
+  });
+
+  const setAfterEat = (key) => {
+    let a = aftereatStatus;
+    if (a[key]) {
+      a[key] = false;
+    } else {
+      a[key] = true;
+    }
+    setAftereatStatus(a);
+    setTest(Date.now());    //이거 없으면 ui 새로고침이 안됨. 원인이 뭐지?
+  }
+
 
   return (
     <View style={styles.body}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
+      <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Rectangle4730}>
-        <AntDesign name="arrowleft" size={42} color="black" style={styles.arrowmagin} onPress={() => navigation.goBack()}/>
+        <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()} />
         <Text style={styles.Text001}>식사 기록</Text>
         
         <Text style={styles.Text002} onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }}>완료</Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      
       <View style={styles.Rectangle4734}>
         <View style={styles.Frame145}>
-          <Text>날짜 추가</Text>
+        
+        <Text>달력 부분</Text>
+
         </View>
         <View style={styles.body3}>
           <View style={styles.Imagebox}>
@@ -36,88 +71,136 @@ export default function App({route, navigation}) {
             />
           </View>
           <View style={styles.Imagebox}>
+            <TouchableOpacity>
+              <AntDesign name="plus" size={36} color="#888888" />
+            </TouchableOpacity>
+            
           </View>
         </View>
         <Text style={styles.Text003}>전체 섭취량</Text>
-        <AnimatedCircularProgress
-          size={150}
-          width={10}
-          backgroundWidth={5}
-          fill={60}
-          tintColor="#6C6EC9"
-          backgroundColor="#DFDFF3"
-          arcSweepAngle={240}
-          rotation={240}
-          lineCap="round">
-            {
-              ()=>
-              <View>
-                <Text>480</Text>
-                <Text>480</Text>
-              </View>
-            }
-        </AnimatedCircularProgress>
-        
-        <Text>탄수화물 17%</Text>
-        <Text>단백질 8%</Text>
-        <Text>지방 12%</Text>
+        <View style={styles.Nutrition}>
+          <AnimatedCircularProgress
+            size={120}
+            width={6}
+            backgroundWidth={6}
+            fill={60}
+            tintColor="#6C6EC9"
+            backgroundColor="#DFDFF3"
+            arcSweepAngle={260}
+            rotation={230}
+            lineCap="round"
+            style={{marginLeft:10}}>
+              {
+                ()=>
+                <View>
+                  <Text style={styles.Text005}>480</Text>
+                  <Text style={styles.Text006}>칼로리</Text>
+                </View>
+              }
+          </AnimatedCircularProgress>
+          <View style={styles.facts}>
+          <View style={styles.fact}>
+            <Text style={styles.Text007}>탄수화물 17%</Text>
+            <ProgressBar progress={0.35} color="#6C6EC9" style={styles.bar}/>
+          </View>
+          <View style={styles.fact}>
+            <Text style={styles.Text007}>단백질 8%</Text>
+            <ProgressBar progress={0.4} color="#6C6EC9" style={styles.bar}/>
+          </View>
+          <View style={styles.fact}>
+            <Text style={styles.Text007}>지방 12%</Text>
+            <ProgressBar progress={0.2} color="#6C6EC9" style={styles.bar}/>
+          </View>
+          </View>  
+            
+          
+          
+          
+        </View>
       </View> 
       <View style={styles.Rectangle4767}>
         <Text style={styles.Text003}>얼마나 드셨나요?</Text>
           <View style={styles.body3}>
-            <View style={styles.Frame169}>
-              <Text>다 먹었어요.</Text>
+            <TouchableOpacity onPress={() => setHowManyEat(1)}>
+              <View style={{...styles.Frame169, backgroundColor: howManyEat===1 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: howManyEat===1 ? "#6C6EC9" : "black"}}>다 먹었어요.</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setHowManyEat(2)}>
+            <View style={{...styles.Frame169, backgroundColor: howManyEat===2 ? "#DFDFF3" : "white"}}>
+              <Text style={{color: howManyEat===2 ? "#6C6EC9" : "black"}}>3/4 먹었어요.</Text>
             </View>
-            <View style={styles.Frame169}>
-              <Text>3/4 먹었어요.</Text>
-            </View>
-            <View style={styles.Frame169}>
-              <Text>1/2 먹었어요.</Text>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setHowManyEat(3)}>
+              <View style={{...styles.Frame169, backgroundColor: howManyEat===3 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: howManyEat===3 ? "#6C6EC9" : "black"}}>1/2 먹었어요.</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.body3}>
-            <View style={styles.Frame169}>
-              <Text>1/4 먹었어요.</Text>
-            </View>
-            <View style={styles.Frame169}>
-              <Text>거의 남겼어요.</Text>
-            </View>
+          <TouchableOpacity onPress={() => setHowManyEat(4)}>
+              <View style={{...styles.Frame169, backgroundColor: howManyEat===4 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: howManyEat===4 ? "#6C6EC9" : "black"}}>1/4 먹었어요.</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setHowManyEat(5)}>
+              <View style={{...styles.Frame169, backgroundColor: howManyEat===5 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: howManyEat===5 ? "#6C6EC9" : "black"}}>거의 남겼어요.</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <Text style={styles.Text003}>식후 상태는 어떠신가요?<Text style={styles.Text004}> (중복 선택 가능)</Text></Text>
           <View style={styles.body3}>
-            <View style={styles.Frame169}>
-              <Text>양호해요.</Text>
-            </View>
-            <View style={styles.Frame169}>
-              <Text>입맛이없어요.</Text>
-            </View>
-            <View style={styles.Frame169}>
-              <Text>구내염</Text>
-            </View>
+            <TouchableOpacity onPress={() => setAfterEat("양호해요")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus.양호해요 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.양호해요 ? "#6C6EC9" : "black"}}>양호해요.</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setAfterEat("입맛이없어요")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus.입맛이없어요 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.입맛이없어요 ? "#6C6EC9" : "black"}}>입맛이 없어요.</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setAfterEat("구내염")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus.구내염 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.구내염 ? "#6C6EC9" : "black"}}>구내염</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.body3}>
-            <View style={styles.Frame169}>
-              <Text>조기포만감</Text>
-            </View>
-            <View style={styles.Frame169}>
-              <Text>연하곤란/삼킴곤란</Text>
-            </View>
+          <TouchableOpacity onPress={() => setAfterEat("조기포만감")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus.조기포만감 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.조기포만감 ? "#6C6EC9" : "black"}}>조기포만감</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setAfterEat("연하곤란/삼킴곤란")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus['연하곤란/삼킴곤란'] ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus['연하곤란/삼킴곤란'] ? "#6C6EC9" : "black"}}>연하곤란/삼킴곤란</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.body3}>
-            <View style={styles.Frame169}>
-              <Text>소화불량   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
-            </View>
-            <View style={styles.Frame169}>
-              <Text>복부 불편감   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
-            </View>
+          <TouchableOpacity onPress={() => setAfterEat("소화불량")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus.소화불량 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.소화불량 ? "#6C6EC9" : "black"}}>소화불량   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setAfterEat("복부불편감")}>
+              <View style={{...styles.Frame169, backgroundColor: aftereatStatus.복부불편감 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.복부불편감 ? "#6C6EC9" : "black"}}>복부 불편감   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.body3}>
-            <View style={styles.Frame164}>
-              <Text>잠시 후에 입력할게요.   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
-            </View>
+            <TouchableOpacity onPress={() => setAfterEat("잠시후에입력할게요")}>
+              <View style={{...styles.Frame164, backgroundColor: aftereatStatus.잠시후에입력할게요 ? "#DFDFF3" : "white"}}>
+                <Text style={{color: aftereatStatus.잠시후에입력할게요 ? "#6C6EC9" : "black"}}>잠시 후에 입력할게요.   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
+              </View>
+            </TouchableOpacity>
           </View>
       </View>
       </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -128,38 +211,38 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5E5E5',
   },
   Rectangle4730: {
-    marginTop: 40,
-    width: Dimensions.get('window').width,
+    position: 'relative',
     height: 70,
-    backgroundColor: '#ffffff',
-    borderStyle: 'solid',
-    borderColor: '#ffffff',
-    borderWidth: 1,
-    borderRadius: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: "white",
+    width: Dimensions.get('window').width,    
+    justifyContent: "center",
+    marginTop:20,
   },
   arrowmagin: {
-    flex: 1,
     marginLeft: 10,
   },
   Text001: {
-    flex: 5,
-    fontSize: 25,
+    position:"absolute",
+    left:55,
+    marginRight:5, 
+    fontSize: 22,
   },
   Text002: {
-    flex: 1,
-    fontSize: 20,
-    color: '#051898',
-    textAlign: 'right',
-    marginRight: 30,
+    position:"absolute",
+    right:0,
+    marginRight:15, 
+    marginBottom: 30,
+    fontSize: 22,
+    color:"#051898"
   },
   body3: {
     flexDirection: 'row',
   },
+  body4: {
+    flexDirection: 'column',
+  },
   Rectangle4767: {
-    marginTop: 15,
+    marginTop: 5,
     width: Dimensions.get('window').width,
     height: 450,
     backgroundColor: '#ffffff',
@@ -200,7 +283,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   Frame164: {
-    width: 180,
+    width: Dimensions.get('window').width/2.8,
     height: 40,
     backgroundColor: '#ffffff',
     borderStyle: 'solid',
@@ -216,7 +299,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Rectangle4734: {
-    marginTop: 15,
+    marginTop: 5,
     width: Dimensions.get('window').width,
     height: 500,
     backgroundColor: '#ffffff',
@@ -250,12 +333,72 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 20,
     marginLeft: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    borderRadius: 8
+    borderRadius: 8,
   },
-
+  Text005: {
+    color: "#6c6ec9",
+    fontSize: 30,
+    textAlign: 'center',
+    marginTop: -10,
+    fontWeight:'bold'
+  },
+  Text006: {
+    color: "#6f6d7e",
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  Text007: {
+    color: "#6f6d7e",
+    fontSize: 17,
+    marginTop: Dimensions.get('window').height/50,
+    top:-10,
+    textAlign:"left",
+    marginLeft:20
+  },
+  bar: {
+    width: Dimensions.get('window').width/3.2,
+    height: 6,
+    marginTop: Dimensions.get('window').height/25,
+    marginRight: 10,
+    borderRadius:50,
+    marginLeft:20,
+    top:-18,
+    
+  },
+  Nutrition: {
+    flexDirection:'row',
+    justifyContent:'space-around',
+    marginTop:20,
+  },
+  fact: {
+    flexDirection: 'row',
+    justifyContent:"space-between",
+    
+  },
+  TopNavigation: {
+    position: 'relative',
+    height: 70,
+    backgroundColor: "white",
+    width: Dimensions.get('window').width,    
+    justifyContent: "center",
+  },
+  Top_Text:{
+    position:"absolute",
+    left:55,
+    marginRight:5, 
+    fontSize: 22,
+  },
+  facts:{
+    flexDirection: 'column',
+    justifyContent:"flex-end",
+    
+  }
 });

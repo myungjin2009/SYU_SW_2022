@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
 //각 화면 파일 불러오기
+import MainPage from './Components/MainPage';
 import MainScreen from './Components/MainScreen';
 import ScanFood from './Components/ScanFood';
 import ScanResults from './Components/ScanResult';
@@ -18,6 +19,7 @@ export default function App() {  //initialRouteName 나중에 main으로 바꿔�
     <NavigationContainer>
       <Stack.Navigator initialRouteName='LoginScreen'>
         
+        <Stack.Screen name='MainPage' component={MainPage} options={{headerShown:false}}/>
         <Stack.Screen name='MainScreen' component={MainScreen} options={{headerShown:false}}/>
         <Stack.Screen name='ScanFood' component={ScanFood} options={{headerShown:false}}/>
         <Stack.Screen name='ScanResults' component={ScanResults} options={{headerShown:false}}/>

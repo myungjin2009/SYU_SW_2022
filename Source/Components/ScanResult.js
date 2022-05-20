@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   AndroidSafeArea: {
     flex: 1,
-    backgroundColor: "orange",
+    backgroundColor: "#FFFFFF",
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   TopNavigation: {
@@ -108,14 +108,14 @@ const styles = StyleSheet.create({
     right:0,
     marginRight:15, 
     marginBottom: 30,
-    fontSize: 25,
+    fontSize: 22,
     color:"#051898"
   },
   Top_Text2:{
     position:"absolute",
     left:55,
     marginRight:5, 
-    fontSize: 25,
+    fontSize: 22,
   },
   arrowBack: {
     marginLeft: 10,

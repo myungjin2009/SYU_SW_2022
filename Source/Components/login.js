@@ -35,7 +35,7 @@ export default function LoginScreen({route, navigation }){
         <Text style={styles.littel_word}>Forgot password</Text>
       </View> 
       
-      <TouchableOpacity style={styles.little_word3} onPress={() => {navigation.navigate('MainScreen');}} ><Text style={styles.little_text3}>Login</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.little_word3} onPress={() => {navigation.navigate('MainPage');}} ><Text style={styles.little_text3}>Login</Text></TouchableOpacity>
       
       <View style={styles.body4}>
       <View style={styles.body41}>

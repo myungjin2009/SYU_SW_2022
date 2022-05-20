@@ -3,7 +3,9 @@ import {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Dimensions, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera } from 'expo-camera';
-import { NavigationContainer} from '@react-navigation/native';
+
+const dialogFontSize = Dimensions.get('window').height*0.03;
+const dialogFontSize_width = Dimensions.get('window').width*0.03;
 
 export default function App({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);   //카메라 권한
@@ -12,6 +14,7 @@ export default function App({navigation}) {
   
 
     ////////////////////////////////////
+
 
   useEffect(() => {
     (async () => {
@@ -41,9 +44,9 @@ export default function App({navigation}) {
 
           <View style={styles.CameraView}>
             <View style={styles.CameraViewDialog}>
-              <Text style={{fontSize: 24, marginTop: 18, color:'white', fontWeight: 'bold'}}>AI 카메라가 음식을 인식 중입니다...</Text>
-              <Text style={{fontSize: 19, marginTop: 30, color:'white'}}>음식을 정중앙에 맞추어 촬영해보세요</Text>
-              <Text style={{fontSize: 19, marginTop: 5, color:'white'}}>화면 밖으로 나가지 않았다면, 완벽해요!</Text>
+              <Text style={{fontSize: dialogFontSize-1, marginTop: dialogFontSize-5, color:'white', fontWeight: 'bold'}}>AI 카메라가 음식을 인식 중입니다...</Text>
+              <Text style={{fontSize: dialogFontSize-5, marginTop: dialogFontSize-3, color:'white'}}>음식을 정중앙에 맞추어 촬영해보세요</Text>
+              <Text style={{fontSize: dialogFontSize-5, marginTop: 5, color:'white'}}>화면 밖으로 나가지 않았다면, 완벽해요!</Text>
               {/* <View style={styles.CameraFocus}></View> */}
             </View>
             {hasPermission === null ? <Text>카메라 권한을 허용해주세요...</Text> : null}
@@ -57,7 +60,7 @@ export default function App({navigation}) {
           <View style={styles.BottomNavigation}>
 
             <View style={styles.GalleryButton}>
-            <Icon name="insert-photo" size={50} color="black"/>
+              <Icon name="insert-photo" size={40} color="black"/>
             </View>
               <View style={styles.SnapshotButton}>
                 <TouchableOpacity onPress={() => {snap()}}>
@@ -82,25 +85,23 @@ const styles = StyleSheet.create({
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   TopNavigation: {
-    width: Dimensions.get('window').width,
+    position: 'relative',
     height: 70,
-    backgroundColor: '#ffffff',
-    borderStyle: 'solid',
-    borderColor: '#ffffff',
-    borderWidth: 1,
-    borderRadius: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    marginTop:20,
+    backgroundColor: "#ffffff",
+    width: Dimensions.get('window').width,
+    
+    justifyContent: "center",
+
   },
   Top_Text:{
     position:"absolute",
     left:55,
     marginRight:5, 
-    fontSize: 25,
+    fontSize: 22,
   },
   arrowBack: {
-    marginLeft: 10,
+    marginLeft: 10
   },
 
   CameraView: {
@@ -116,9 +117,9 @@ const styles = StyleSheet.create({
   CameraViewDialog: {
     position: 'absolute',
     zIndex: 1,
-    marginTop: 25,
+    marginTop: 15,
     width: Dimensions.get('window').width*0.91,
-    height: 150,
+    height: Dimensions.get('window').height*0.175,
     borderRadius: 15,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     alignItems: 'center',
@@ -147,21 +148,21 @@ const styles = StyleSheet.create({
     
   },
   GalleryButton: {
-    width: 50,
-    height: 50,
-    left:20,
+    width: 40,
+    height: 40,
+    left: 15,
   },
   SnapshotButton: {
-    width: 95,
-    height: 95,
+    width: dialogFontSize_width+68,
+    height: dialogFontSize_width+68,
     backgroundColor: '#0d1a8a',
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   SnapshotButtonWhite: {
-    width:76,
-    height:76,
+    width:dialogFontSize_width+50,
+    height:dialogFontSize_width+50,
     backgroundColor:"white",
     borderRadius: 50,
     alignItems: 'center',
