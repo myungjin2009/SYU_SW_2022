@@ -455,7 +455,11 @@ export default function AppView ({navigation}){
             </ScrollView>
       </View>
       </View>
-        {isShowTest && <View style={{position:'absolute', alignItems: 'center',borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350, backgroundColor: 'white' }}>
+        {isShowTest && <View style={{position:'absolute',  zindex: 30, alignItems: 'center',
+        borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
+         backgroundColor: 'white',
+         width: Dimensions.get('window').width*0.8,
+         height: Dimensions.get('window').height*0.45, }}>
         <Text>식사를 기록해 주세요</Text>
           <View style={styles.container_2}>
            
