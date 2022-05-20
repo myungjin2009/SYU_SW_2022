@@ -34,9 +34,9 @@ export default function LoginScreen({route, navigation }){
         <TextInput style={styles.search} placeholder = "Password" />
         <Text style={styles.littel_word}>Forgot password</Text>
       </View> 
-      <TouchableOpacity onPress={() => {navigation.navigate('MainScreen')}}>
-      <View style={styles.little_word3} onPress={() => {navigation.navigate('MainScreen');}} ><Text style={styles.little_text3}>Login</Text></View>
-      </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.little_word3} onPress={() => {navigation.navigate('MainScreen');}} ><Text style={styles.little_text3}>Login</Text></TouchableOpacity>
+      
       <View style={styles.body4}>
       <View style={styles.body41}>
       <View style={styles.Imagebox}>
@@ -72,7 +72,9 @@ const styles = StyleSheet.create({
   flex:0.4,
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: '#F7F7FB'
+  backgroundColor: '#F7F7FB',
+  marginBottom:-20,
+  marginTop:-35
  },
  logo:{
    fontSize:60,
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
    flex:0.3,
    backgroundColor:"#F7F7FB",
    marginBottom:-20,
-   
+   marginTop:-50,
  },
  search: {
   
@@ -103,7 +105,8 @@ littel_word:{
   color:"green",
   textAlign:"right",
   marginRight:10,
-  marginTop:5
+  marginTop:5,
+  marginBottom:-20,
 },
 little_word3:{
   
@@ -113,7 +116,7 @@ little_word3:{
   marginBottom: 10,
   marginLeft: 10,
   marginRight: 10,
-  
+  marginTop:-50,
   backgroundColor: '#ffffff',
   borderStyle: 'solid',
   borderColor: '#6366ED',
