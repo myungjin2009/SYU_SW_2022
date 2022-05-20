@@ -13,9 +13,12 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { getDateEasy } from './../modules/time';
 
 export default function App({route, navigation}) {
-  
+
+  let test1 = 0;
+
   const [howManyEat, setHowManyEat] = React.useState(0);
   const [aftereatStatus, setAftereatStatus] = React.useState({
     "양호해요": false,
@@ -29,10 +32,11 @@ export default function App({route, navigation}) {
   });
 
   const [test,setTest] = React.useState(0);
-  const [open, setOpen] = React.useState(false)
+  const [date, setDate] = React.useState(0);
 
   React.useEffect(() => {
-  });
+    setDate(getDateEasy());
+  },[]);
 
   const setAfterEat = (key) => {
     let a = aftereatStatus;
@@ -60,14 +64,15 @@ export default function App({route, navigation}) {
       <View style={styles.Rectangle4734}>
         <View style={styles.Frame145}>
         
-        <Text>달력 부분</Text>
+        <Text>{date}</Text>
 
         </View>
         <View style={styles.body3}>
           <View style={styles.Imagebox}>
-            <Image
+            {/* <Image
                 source={{uri:route.params.image}} style={styles.image}
-            />
+            /> */}
+            <Text>임시 개발중</Text>
           </View>
           <View style={styles.Imagebox}>
             <TouchableOpacity>
@@ -108,10 +113,6 @@ export default function App({route, navigation}) {
             <ProgressBar progress={0.4} color="#6C6EC9" style={styles.bar}/>
             <ProgressBar progress={0.2} color="#6C6EC9" style={styles.bar}/>
           </View>
-            
-          
-          
-          
         </View>
       </View> 
       <View style={styles.Rectangle4767}>
