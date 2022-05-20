@@ -10,6 +10,9 @@ import ScanResults from './Components/ScanResult';
 import NutritionFacts from './Components/NutritionFacts';
 import ScanResults2 from './Components/ScanResult2';
 import LoginScreen from './Components/login'
+
+
+
 const Stack = createStackNavigator();
 
 //각 화면 구성
@@ -27,4 +30,4 @@ export default function App() {  //initialRouteName 나중에 main으로 바꿔�
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+}2

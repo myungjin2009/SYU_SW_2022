@@ -23,7 +23,8 @@ import { AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Flatdumpling from "../image/flatdumpling.png";
 import Porkcutletcurry from "../image/Porkcutletcurry.png";
-
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {LocaleConfig} from 'react-native-calendars';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -80,13 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F7FB",
     marginRight:82
   },
-  footer:{
-    flex: 0.55,
-    backgroundColor: "white",
-    borderTopRightRadius: 16,
-    flexDirection: 'row'
-    
-  },
   home:{
     marginLeft:45,
     marginTop:15,
@@ -135,7 +129,7 @@ const styles = StyleSheet.create({
     },
     Rectangle4734: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height*1.2,
         backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',
@@ -372,6 +366,15 @@ function clickBtnFunction(navigation){
   navigation.navigate('ScanFood');
 }
 
+LocaleConfig.locales['fr'] = {
+    monthNames: ['Janvier','Février','Mars','Avril','May','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+    monthNamesShort: ['Janv.','Févr.','Mars','Avril','May','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+    dayNames: ['일요일','월요일', '화요일','수요일','목요일','금요일','토요일'],
+    dayNamesShort: ['일', '월','화','수','목','금','토'],
+    today: 'Aujourd\'hui'
+  };
+  LocaleConfig.defaultLocale = 'fr';
+
 export default function AppView ({route, navigation}){
     
     const [isShowTest, setIsShowTest] = React.useState(false);
@@ -404,10 +407,7 @@ export default function AppView ({route, navigation}){
             </SafeAreaView>
 
 
-        <View style={styles.Rectangle4741}>
-                <Text>달력</Text>
-
-        </View>
+            <Calendar/>
             
             <View>
             <ScrollView showsVerticalScrollIndicator={false}>

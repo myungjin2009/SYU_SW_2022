@@ -19,7 +19,7 @@ export default function App({route, navigation}) {
 
   const [howManyEat, setHowManyEat] = React.useState(0);
   const [aftereatStatus, setAftereatStatus] = React.useState({
-    "양호해요": false,
+    "양호해요": true,
     "입맛이없어요" : false,
     "구내염" : false,
     "조기포만감" : false,
@@ -51,7 +51,6 @@ export default function App({route, navigation}) {
   return (
     <View style={styles.body}>
       <StatusBar style="dark" />
-      <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Rectangle4730}>
         <View style={styles.Frame1691}>
@@ -205,8 +204,8 @@ export default function App({route, navigation}) {
           </View>
       </View>
       </ScrollView>
-      </SafeAreaView>
     </View>
+    
   );
 }
 
@@ -217,11 +216,11 @@ const styles = StyleSheet.create({
   },
   Rectangle4730: {
     position: 'relative',
-    height: 70,
+    height: Dimensions.get('window').height/12,
     backgroundColor: "white",
     width: Dimensions.get('window').width,    
     justifyContent: "center",
-    marginTop:20,
+    marginTop: Dimensions.get('window').height/22,
   },
   arrowmagin: {
     marginLeft: 10,
@@ -247,7 +246,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   Rectangle4767: {
-    marginTop: 5,
+    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 450,
     backgroundColor: '#ffffff',
@@ -316,7 +315,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Rectangle4734: {
-    marginTop: 5,
+    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 500,
     backgroundColor: '#ffffff',

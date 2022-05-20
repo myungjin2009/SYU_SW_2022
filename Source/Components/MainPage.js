@@ -17,6 +17,8 @@ import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/AntDesign';
 import { AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {LocaleConfig} from 'react-native-calendars';
 import Flatdumpling from "../image/flatdumpling.png";
 import Porkcutletcurry from "../image/Porkcutletcurry.png";
 
@@ -25,7 +27,18 @@ function clickBtnFunction(navigation){
     navigation.navigate('MainScreen');
   }
 
+  LocaleConfig.locales['fr'] = {
+    monthNames: ['Janvier','Février','Mars','Avril','May','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+    monthNamesShort: ['Janv.','Févr.','Mars','Avril','May','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+    dayNames: ['일요일','월요일', '화요일','수요일','목요일','금요일','토요일'],
+    dayNamesShort: ['일', '월','화','수','목','금','토'],
+    today: 'Aujourd\'hui'
+  };
+  LocaleConfig.defaultLocale = 'fr';
+
  export default function App({route, navigation}) {
+
+    
 
     const [mealtime, setMealtime] = React.useState(0);
 
@@ -54,10 +67,9 @@ function clickBtnFunction(navigation){
                 </View>
             </View>
             </SafeAreaView>
-            <View style={styles.Rectangle4741}>
-                <Text>달력</Text>
-
-            </View>
+        
+        <Calendar/>
+     
             
             <View>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -278,7 +290,7 @@ function clickBtnFunction(navigation){
     },
     Rectangle4734: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height*1.2,
         backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',
@@ -481,7 +493,13 @@ function clickBtnFunction(navigation){
         shadowOffset: {
         height: 8,
         width: 6,
-        }
+        },
+        
+    },
+    cal:{
+            width: "100%",
+            height: "100%",
+        
     },
     Rectangle47501: {
         width: Dimensions.get('window').width/1.1,

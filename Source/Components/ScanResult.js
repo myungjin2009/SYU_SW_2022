@@ -31,7 +31,9 @@ export default function UserScreen({route, navigation }){
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
           <View style={styles.TopNavigation}>
-            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>{clickBtnFunction(navigation)}}/>
+            <View style={styles.Frame1691}>
+              <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
+            </View>
             <Text style={styles.Top_Text2}>식사 촬영</Text>
            
             <Text onPress={() => {navigation.navigate('NutritionFacts',{image:route.params.image}); }} style={styles.Top_Text}>다음</Text>
@@ -91,17 +93,12 @@ const styles = StyleSheet.create({
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   TopNavigation: {
-    
-    width: Dimensions.get('window').width,
+    position: 'relative',
     height: 70,
-    backgroundColor: '#ffffff',
-    borderStyle: 'solid',
-    borderColor: '#ffffff',
-    borderWidth: 1,
-    borderRadius: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: "white",
+    width: Dimensions.get('window').width,
+    justifyContent: "center",
+    marginTop: Dimensions.get('window').height/22,
   },
   Top_Text:{
     position:"absolute",
@@ -235,5 +232,17 @@ const styles = StyleSheet.create({
   Dummy: {
     width: 50,
     height: 50,
-  }
+  },
+  Frame1691: {
+    width: 50,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
