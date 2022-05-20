@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   Text001: {
     flex: 5,
-    fontSize: 25,
+    fontSize: 22,
     marginRight:45
   },
   search: {
