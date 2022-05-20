@@ -3,7 +3,7 @@ import  React, {Component} from 'react';
 
 //import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Platform, SafeAreaView, StatusBar, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Image} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,31 +11,15 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-
-
-function clickBtnFunction(navigation){
-  /* 코드 작성 */
-  navigation.navigate('ScanFood');
-}
-
-export default function UserScreen({route, navigation }){
-  
-    
-
-    
-    //console.log(route.params.image);
-    //console.log("array:"+array[0].image);
-    
+export default function UserScreen() {
   return (
     <View style={styles.container}>
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
           <View style={styles.TopNavigation}>
-            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>{clickBtnFunction(navigation)}}/>
+            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack}/>
             <Text style={styles.Top_Text2}>식사 촬영</Text>
-           
-            <Text onPress={() => {navigation.navigate('NutritionFacts',{image:route.params.image}); }} style={styles.Top_Text}>다음</Text>
-          
+            <Text style={styles.Top_Text}>다음</Text>
           </View>
           <View style={styles.CameraView}>
           <View style={styles.OnMiddle_camera}>
@@ -44,8 +28,8 @@ export default function UserScreen({route, navigation }){
           </View>
           <View style={styles.middle_camera}>
           <Image
-                source={{uri:route.params.image}} style={styles.image}
-            /> 
+            source={require('C:/Users/paikjeonghun/Desktop/food_app/source/images/sand.jpg')} style={styles.image}
+          />
           </View>
 
           <ScrollView  showsHorizontalScrollIndicator={false} horizontal style={styles.word}>
@@ -62,11 +46,9 @@ export default function UserScreen({route, navigation }){
 
           <View style={styles.BottomNavigation}>
 
-            <View style={styles.GalleryButton}>
-              <Icon name="insert-photo" size={50} color="black"/>
-            </View>
+            <View style={styles.GalleryButton}></View>
               <View style={styles.SnapshotButton}>
-                <TouchableOpacity onPress={() => {navigation.navigate('ScanFood')}}>
+                <TouchableOpacity>
                   <View style={styles.SnapshotButtonWhite}>
                     {<Icon name="refresh" size={36} color="#0d1a8a"/> }
                   </View>
@@ -77,8 +59,7 @@ export default function UserScreen({route, navigation }){
       </SafeAreaView>
     </View>
   );
-  }
-
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -87,39 +68,32 @@ const styles = StyleSheet.create({
   },
   AndroidSafeArea: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "orange",
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   TopNavigation: {
-    
-    width: Dimensions.get('window').width,
+    position: 'relative',
     height: 70,
-    backgroundColor: '#ffffff',
-    borderStyle: 'solid',
-    borderColor: '#ffffff',
-    borderWidth: 1,
-    borderRadius: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: "white",
+    width: Dimensions.get('window').width,
+    
+    justifyContent: "center",
   },
   Top_Text:{
     position:"absolute",
     right:0,
     marginRight:15, 
-    marginBottom: 30,
-    fontSize: 22,
+    fontSize: 25,
     color:"#051898"
   },
   Top_Text2:{
     position:"absolute",
     left:55,
     marginRight:5, 
-    fontSize: 22,
+    fontSize: 25,
   },
   arrowBack: {
     marginLeft: 10,
-
   },
 
   CameraView: {
@@ -149,21 +123,19 @@ const styles = StyleSheet.create({
     borderRadius : 8
   },
   middle_text1:{
-    flex:1,
-    fontSize: 26,
+    fontSize: 30,
     textAlign: "center",
-    marginTop:10,
+    marginTop: 15,
     color:"white"
   },
   middle_text2:{
-    flex:1,
-    fontSize: 15,
-    marginTop: 10,
+    fontSize: 18,
+    marginTop: 15,
     textAlign: "center",
     color:"white"
   },
   OnMiddle_camera:{
-    marginTop:10,
+    
     marginBottom: 30,
     marginLeft: 20,
     marginRight: 20,
@@ -182,7 +154,7 @@ const styles = StyleSheet.create({
     alignContent:"center",
     borderRadius : 40,
     width: SCREEN_WIDTH/5,
-    height: SCREEN_HEIGHT/18,
+    height: 40,
     backgroundColor: "rgba(108, 110, 201, 0.8)",
     marginLeft: 5,
     marginRight: 5
@@ -214,6 +186,8 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     left:20,
+    borderRadius: 50,
+    backgroundColor: "green",
   },
   SnapshotButton: {
     width: 95,

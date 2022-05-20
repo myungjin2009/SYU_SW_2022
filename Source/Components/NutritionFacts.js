@@ -60,7 +60,8 @@ export default function App({route, navigation}) {
           <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()}/>
         </View>
         <Text style={styles.Text001}>식사 기록</Text>
-        <Text style={styles.Text002}>완료</Text>          
+        
+        <Text style={styles.Text002} onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }}>완료</Text>
       </View>
       
       <View style={styles.Rectangle4734}>
@@ -104,17 +105,20 @@ export default function App({route, navigation}) {
                 </View>
               }
           </AnimatedCircularProgress>
-          
+          <View style={styles.facts}>
           <View style={styles.fact}>
             <Text style={styles.Text007}>탄수화물 17%</Text>
-            <Text style={styles.Text007}>단백질 8%</Text>
-            <Text style={styles.Text007}>지방 12%</Text>
+            <ProgressBar progress={0.35} color="#6C6EC9" style={styles.bar}/>
           </View>
           <View style={styles.fact}>
-            <ProgressBar progress={0.35} color="#6C6EC9" style={styles.bar}/>
+            <Text style={styles.Text007}>단백질 8%</Text>
             <ProgressBar progress={0.4} color="#6C6EC9" style={styles.bar}/>
+          </View>
+          <View style={styles.fact}>
+            <Text style={styles.Text007}>지방 12%</Text>
             <ProgressBar progress={0.2} color="#6C6EC9" style={styles.bar}/>
           </View>
+          </View>  
         </View>
       </View> 
       <View style={styles.Rectangle4767}>
@@ -215,6 +219,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: Dimensions.get('window').width,    
     justifyContent: "center",
+    marginTop:20,
   },
   arrowmagin: {
     marginLeft: 10,
@@ -369,7 +374,9 @@ const styles = StyleSheet.create({
     color: "#6f6d7e",
     fontSize: 17,
     marginTop: Dimensions.get('window').height/50,
-    top:-10
+    top:-10,
+    textAlign:"left",
+    marginLeft:20
   },
   bar: {
     width: Dimensions.get('window').width/3.2,
@@ -377,8 +384,9 @@ const styles = StyleSheet.create({
     marginTop: Dimensions.get('window').height/25,
     marginRight: 10,
     borderRadius:50,
-    top:-18
-
+    marginLeft:20,
+    top:-18,
+    
   },
   Nutrition: {
     flexDirection:'row',
@@ -386,7 +394,9 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   fact: {
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent:"space-between",
+    
   },
   TopNavigation: {
     position: 'relative',
@@ -401,4 +411,9 @@ const styles = StyleSheet.create({
     marginRight:5, 
     fontSize: 22,
   },
+  facts:{
+    flexDirection: 'column',
+    justifyContent:"flex-end",
+    
+  }
 });
