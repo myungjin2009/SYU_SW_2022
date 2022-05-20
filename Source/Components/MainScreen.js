@@ -376,6 +376,12 @@ export default function AppView ({route, navigation}){
     
     const [isShowTest, setIsShowTest] = React.useState(false);
     const [mealtime, setMealtime] = React.useState(0);
+    const [isBackgroundShow, setIsBackgroundShow] =React.useState(false);
+
+    const 함수 = () => {
+        isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false);
+        isBackgroundShow === false ? setIsBackgroundShow(true) : setIsBackgroundShow(false);
+    }
 
     return (
       <View style={styles.container}>
@@ -401,7 +407,7 @@ export default function AppView ({route, navigation}){
                     <Text style={{color: "#FFFFFF", fontSize: 20}}>내 건강정보 입력</Text>
                 </View>
             </View>
-            </SafeAreaView>
+        </SafeAreaView>
 
 
         <View style={styles.Rectangle4741}>
@@ -586,55 +592,59 @@ export default function AppView ({route, navigation}){
                 </View>
                 </ScrollView>
             
-        </View>
-        {isShowTest && <View style={{position:'absolute',  zindex: 30, alignItems: 'center',
-        borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
-         backgroundColor: 'white',
-         width: Dimensions.get('window').width*0.8,
-         height: Dimensions.get('window').height*0.45, }}>
-        <Text>식사를 기록해 주세요</Text>
-          <View style={styles.container_2}>
-           
-              <TouchableHighlight 
-                
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_1}>
-                <Text>아침🍎</Text>
-                
-              </TouchableHighlight>
-              
-              <TouchableHighlight 
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_2}>
-                <Text>점심🍲</Text>
-          </TouchableHighlight>
-          
-          </View>
-
-          <View style={styles.container_3}>
-         
-              <TouchableHighlight 
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_3}>
-                <Text>저녁🥗</Text>
-              </TouchableHighlight>
+            </View>
+        {isBackgroundShow && <View style={{backgroundColor:'rgba( 0, 0, 0, 0.5 )', position: "absolute", width:Dimensions.get('window').width, height:Dimensions.get('window').height}}>
+            {isShowTest && <View style={{position:'absolute', alignItems: 'center',
+            borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
+            backgroundColor: 'white',
+            width: Dimensions.get('window').width*0.8,
+            height: Dimensions.get('window').height*0.45, }}>
+            <Text>식사를 기록해 주세요</Text>
+            <View style={styles.container_2}>
             
-              <TouchableHighlight 
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_4}>
-                <Text>간식🍓</Text>
-              </TouchableHighlight>
-          </View>  
+                <TouchableHighlight 
+                    
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_1}>
+                    <Text>아침🍎</Text>
+                    
+                </TouchableHighlight>
+                
+                <TouchableHighlight 
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_2}>
+                    <Text>점심🍲</Text>
+            </TouchableHighlight>
+            
+            </View>
+
+            <View style={styles.container_3}>
+            
+                <TouchableHighlight 
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_3}>
+                    <Text>저녁🥗</Text>
+                </TouchableHighlight>
+                
+                <TouchableHighlight 
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_4}>
+                    <Text>간식🍓</Text>
+                </TouchableHighlight>
+            </View>  
+            </View>
+            
+            }
         </View>}
 
         <View style={styles.footer}>
            <Icon name="home" size={50} color="#6C6EC9" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(false): setIsShowTest(false)}/>
            <Icon3 name="pluscircleo" size={50} color="#6C6EC9" style={styles.home} 
-            onPress={() => isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false)}
+            onPress={() => 함수()}
             />
            <Icon2 name="user-circle" size={50} color="#6C6EC9" style={styles.home} />
         </View>
