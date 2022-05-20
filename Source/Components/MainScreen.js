@@ -43,42 +43,56 @@ const styles = StyleSheet.create({
   container_4:{
     flex: 1,
   },
-
+  tbox:{
+    
+  },
   button_1: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 40,
-    marginLeft:82,
+    bottom: Dimensions.get('window').width*0.1,
+    width: Dimensions.get('window').width*0.28,
+    right: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
+    padding: 28,
     backgroundColor: "#F7F7FB",
+    borderColor: "#F7F7FB",
   },
   button_2: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 40,
+    padding: 28,
+    bottom: Dimensions.get('window').width*0.1,
+    width: Dimensions.get('window').width*0.28,
+    left: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
     backgroundColor: "#F7F7FB",
-    marginRight:82,
+    borderColor: "#F7F7FB",
   },
   button_3: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 40,
+    bottom: Dimensions.get('window').width*0.01,
+    width: Dimensions.get('window').width*0.28,
+    right: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
+    padding: 28,
     backgroundColor: "#F7F7FB",
-    marginLeft:82,
+    borderColor: "#F7F7FB",
   },
   button_4: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
+    bottom: Dimensions.get('window').width*0.01,
+    width: Dimensions.get('window').width*0.28,
+    left: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
     borderRadius: 10,
-    padding: 40,
+    padding: 28,
     backgroundColor: "#F7F7FB",
-    marginRight:82
+    borderColor: "#F7F7FB",
   },
   footer:{
     flex: 0.55,
@@ -593,29 +607,31 @@ export default function AppView ({route, navigation}){
                 </ScrollView>
             
             </View>
-        {isBackgroundShow && <View style={{backgroundColor:'rgba( 0, 0, 0, 0.5 )', position: "absolute", width:Dimensions.get('window').width, height:Dimensions.get('window').height}}>
+            {isBackgroundShow && <View style={{backgroundColor:'rgba( 0, 0, 0, 0.5 )', position: "absolute", 
+            width:Dimensions.get('window').width, height:Dimensions.get('window').height}}>
             {isShowTest && <View style={{position:'absolute', alignItems: 'center',
-            borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
+            borderRadius: 15, marginLeft: 40,
             backgroundColor: 'white',
-            width: Dimensions.get('window').width*0.8,
-            height: Dimensions.get('window').height*0.45, }}>
-            <Text>식사를 기록해 주세요</Text>
-            <View style={styles.container_2}>
             
-                <TouchableHighlight 
-                    
+            bottom:Dimensions.get('window').width*0.3,
+            width: Dimensions.get('window').width*0.65,
+            height: Dimensions.get('window').height*0.33,
+            left: Dimensions.get('window').width*0.07 }}>
+            <Text style={{ fontWeight: 'bold'}}>식사를 기록해 주세요</Text>
+            <View style={styles.container_2}>
+                <TouchableHighlight  
                     onPress={()=>{clickBtnFunction(navigation)}}
                     underlayColor="#DFDFF3"
                     style={styles.button_1}>
-                    <Text>아침🍎</Text>
+                    <Text style={{fontWeight: 'bold'}}>아침🍎</Text>
                     
                 </TouchableHighlight>
-                
+ 
                 <TouchableHighlight 
                     onPress={()=>{clickBtnFunction(navigation)}}
                     underlayColor="#DFDFF3"
                     style={styles.button_2}>
-                    <Text>점심🍲</Text>
+                    <Text style={{fontWeight: 'bold'}}>점심🍲</Text>
             </TouchableHighlight>
             
             </View>
@@ -626,14 +642,15 @@ export default function AppView ({route, navigation}){
                     onPress={()=>{clickBtnFunction(navigation)}}
                     underlayColor="#DFDFF3"
                     style={styles.button_3}>
-                    <Text>저녁🥗</Text>
+                    <Text style={{fontWeight: 'bold'}}>저녁🥗</Text>
+                        
                 </TouchableHighlight>
                 
                 <TouchableHighlight 
                     onPress={()=>{clickBtnFunction(navigation)}}
                     underlayColor="#DFDFF3"
                     style={styles.button_4}>
-                    <Text>간식🍓</Text>
+                    <Text style={{fontWeight: 'bold'}}>간식🍓</Text>
                 </TouchableHighlight>
             </View>  
             </View>
@@ -642,7 +659,7 @@ export default function AppView ({route, navigation}){
         </View>}
 
         <View style={styles.footer}>
-           <Icon name="home" size={50} color="#6C6EC9" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(false): setIsShowTest(false)}/>
+           <Icon name="home" size={50} color="#6C6EC9" style={styles.home}/>
            <Icon3 name="pluscircleo" size={50} color="#6C6EC9" style={styles.home} 
             onPress={() => 함수()}
             />
