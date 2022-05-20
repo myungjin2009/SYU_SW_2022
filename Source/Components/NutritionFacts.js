@@ -9,15 +9,13 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons,SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getDateEasy } from './../modules/time';
 
 export default function App({route, navigation}) {
-
-  let test1 = 0;
 
   const [howManyEat, setHowManyEat] = React.useState(0);
   const [aftereatStatus, setAftereatStatus] = React.useState({
@@ -66,18 +64,22 @@ export default function App({route, navigation}) {
       
       <View style={styles.Rectangle4734}>
         <View style={styles.Frame145}>
-        
-        <Text style={{fontSize: 18}}>{date}</Text>
-
+          <Text style={{fontSize: 18, marginLeft:14}}>{date}</Text>
+          <TouchableOpacity>
+            <SimpleLineIcons style={{marginRight: 14}} name="pencil" size={24} color="black" />
+          </TouchableOpacity>
         </View>
         <View style={styles.body3}>
-          <View style={styles.Imagebox}>
-            {/* <Image
+          <View style={{...styles.Imagebox}}>
+            <Image
                 source={{uri:route.params.image}} style={styles.image}
-            /> */}
-            <Text>임시 개발중</Text>
+            />
+            <Ionicons name="remove-circle-sharp" style={{position:'absolute', right:0, marginTop:6, marginRight:6}} size={30} color="grey" />
+            <View style={{position:'absolute', width:60, height:40, backgroundColor:'rgba(0,0,0,0.5)', borderRadius:25,alignItems:'center',justifyContent:'center', bottom:0, marginBottom:8, marginLeft:8}}>
+              <Text style={{fontSize:17, color:'white'}}>편집</Text>
+            </View>
           </View>
-          <View style={styles.Imagebox}>
+          <View style={styles.Imagebox2}>
             <TouchableOpacity>
               <AntDesign name="plus" size={36} color="#888888" />
             </TouchableOpacity>
@@ -333,12 +335,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: 20,
     marginTop: 15,
   },
   Imagebox: {
+    width: 200,
+    height: 200,
+    backgroundColor: '#f7f7fb',
+    borderStyle: 'solid',
+    borderColor: '#f7f7fb',
+    borderWidth: 1,
+    borderRadius: 15,
+    marginTop: 20,
+    marginLeft: 20,
+    
+  },
+  Imagebox2: {
     width: 200,
     height: 200,
     backgroundColor: '#f7f7fb',

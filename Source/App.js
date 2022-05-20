@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 export default function App() {  //initialRouteName 나중에 main으로 바꿔줘야함!!!!!!
   return(
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='MainScreen'>
+      <Stack.Navigator initialRouteName='LoginScreen'>
         
         <Stack.Screen name='MainScreen' component={MainScreen} options={{headerShown:false}}/>
         <Stack.Screen name='ScanFood' component={ScanFood} options={{headerShown:false}}/>

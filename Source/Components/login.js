@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Image} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import mainIcon from '../images/main_icon.png';
 import kakao from '../images/kakao_login_medium_narrow.png';
 import naver from '../images/btnG.png';
 import face from '../images/face.png';
@@ -26,16 +27,19 @@ export default function LoginScreen({route, navigation }){
     
     <View style={styles.body1}>
       <View style={styles.body2}>
-        <Text style={styles.logo}>LOGIN</Text>
+        <Image
+                source={mainIcon} style={{}}
+        />
+        
         <Text style={styles.logo}>SW_식단관리</Text>
       </View>
       <View style={styles.body3}>
-        <TextInput style={styles.search} placeholder = "Phone number, username or email" />
-        <TextInput style={styles.search} placeholder = "Password" />
-        <Text style={styles.littel_word}>Forgot password</Text>
+        <TextInput style={styles.search} placeholder = "이메일" />
+        <TextInput style={styles.search} placeholder = "비밀번호" />
+        <Text style={styles.littel_word}>아이디/비밀번호 찾기</Text>
       </View> 
       
-      <TouchableOpacity style={styles.little_word3} onPress={() => {navigation.navigate('MainPage');}} ><Text style={styles.little_text3}>Login</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.little_word3} onPress={() => {navigation.navigate('MainScreen');}} ><Text style={styles.little_text3}>로그인</Text></TouchableOpacity>
       
       <View style={styles.body4}>
       <View style={styles.body41}>
@@ -77,8 +81,7 @@ const styles = StyleSheet.create({
   marginTop:-35
  },
  logo:{
-   fontSize:60,
-   fontStyle:'normal',
+   fontSize:35,
    textAlign:"center"
  },
  body3:{
@@ -91,20 +94,20 @@ const styles = StyleSheet.create({
   
   marginTop: 10,
   marginBottom: 10,
-  marginLeft:15,
-  marginRight: 15,
+  marginLeft:35,
+  marginRight: 35,
   paddingHorizontal: 20,
   height: SCREEN_HEIGHT/15,
-  borderRadius: 5,
+  borderRadius: 15,
   borderColor: 'gray',
   borderWidth: 1,
   backgroundColor: "#F7F7FB"
 },
 littel_word:{
-  fontSize:18,
+  fontSize:14,
   color:"green",
   textAlign:"right",
-  marginRight:10,
+  marginRight:35,
   marginTop:5,
   marginBottom:-20,
 },
@@ -112,12 +115,12 @@ little_word3:{
   
   justifyContent: 'center',
   alignContent:"center",
-  borderRadius : 5,
+  borderRadius : 15,
   marginBottom: 10,
-  marginLeft: 10,
-  marginRight: 10,
+  marginLeft: 35,
+  marginRight: 35,
   marginTop:-50,
-  backgroundColor: '#ffffff',
+  backgroundColor: '#6366ED',
   borderStyle: 'solid',
   borderColor: '#6366ED',
   borderWidth: 1,
@@ -125,8 +128,9 @@ little_word3:{
 },
 little_text3:{
   textAlign:'center',
-  fontSize:16,
-  color:"#6366ED"
+  fontSize:20,
+  fontWeight: 'bold',
+  color:"#FFFFFF"
 },
 checkbox: {
   alignSelf: "center",
