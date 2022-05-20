@@ -67,7 +67,7 @@ export default function App({route, navigation}) {
       <View style={styles.Rectangle4734}>
         <View style={styles.Frame145}>
         
-        <Text>{date}</Text>
+        <Text style={{fontSize: 18}}>{date}</Text>
 
         </View>
         <View style={styles.body3}>

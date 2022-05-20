@@ -28,7 +28,7 @@ switch(date.getDay()) {
     break;
 }
 const t_time = (date.getHours() >= 13) ? (date.getHours() - 12) : date.getHours();  //시간 (12시간제)
-const t_AmPm = (date.getHours() >= 13) ? "오후" : "오전";                            //오전, 오후
+const t_AmPm = (date.getHours() >= 12) ? "오후" : "오전";                            //오전, 오후
 const t_minutes = date.getMinutes();
 
 
