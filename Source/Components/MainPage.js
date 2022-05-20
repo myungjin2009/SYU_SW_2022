@@ -285,7 +285,7 @@ function clickBtnFunction(navigation){
     },
     Rectangle4734: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height*1.3,
+        height: Dimensions.get('window').height*1.2,
         backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',

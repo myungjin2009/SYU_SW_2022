@@ -60,10 +60,10 @@ export default function ScanResults2({route, navigation}) {
         
           <Text style={styles.body4Text} > <Icon name="warning" size={18}  style={styles.warning} /> 오늘의 한끼를 표현할 마땅한 태그가 없다면</Text>
           <View style={styles.body4re}>
-          <View style={styles.little_word2}><Text style={styles.little_text2}>다시 촬영</Text></View>
-          <View style={styles.little_word2}><Text style={styles.little_text2}>직접 입력</Text></View>
+          <TouchableOpacity style={styles.little_word2}  onPress={() => {navigation.navigate('ScanFood')}}><Text style={styles.little_text2}>다시 촬영</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.little_word2}><Text style={styles.little_text2}>직접 입력</Text></TouchableOpacity>
           </View>
-          <View style={styles.little_word3}><Text style={styles.little_text3}>저장</Text></View>
+          <TouchableOpacity style={styles.little_word3}><Text style={styles.little_text3}>저장</Text></TouchableOpacity>
         
 
       </View>
@@ -100,7 +100,8 @@ const styles = StyleSheet.create({
   Text001: {
     flex: 5,
     fontSize: 22,
-    marginRight:45
+    marginRight:65,
+    marginLeft:-10
   },
   search: {
     flex:0.8,
@@ -152,22 +153,23 @@ const styles = StyleSheet.create({
     
     backgroundColor: "#FFFFFF",
     height: SCREEN_HEIGHT/12,
+    marginBottom: -(SCREEN_HEIGHT/40)
     //flexGrow:1,
   },
   word2:{
-    marginTop:5,
+    
     backgroundColor: "#FFFFFF",
     height: SCREEN_HEIGHT/12,
     //flexGrow:1,
   },
   little_word:{
-    flex:0.5,
+    flex:1,
     justifyContent: 'center',
     alignContent:"center",
     borderRadius : 40,
     width: SCREEN_WIDTH/5,
     height: SCREEN_HEIGHT/18,
-    backgroundColor: "rgba(108, 110, 201, 0.8)",
+    backgroundColor: "#DFDFF3",
     marginLeft: 5,
     marginRight: 5,
     
@@ -175,20 +177,21 @@ const styles = StyleSheet.create({
   little_text:{
     textAlign:'center',
     fontSize:15,
-    color:"white"
+    color:"#6C6EC9"
   },
   body4:{
     borderTopLeftRadius:10,
     marginTop:20,
     flex:0.35,
     backgroundColor:"#FFFFFF",
+    
   },
   body4Text:{
     fontSize: 18,
     textAlign: "center",
     color: "#3D3B4C",
     fontWeight: "600",
-    marginTop:20,
+    marginTop:10,
   },
   body4re:{
     flexDirection: 'row',
@@ -214,6 +217,7 @@ const styles = StyleSheet.create({
     color:"#888888"
   },
   little_word3:{
+    bottom:-10,
     flex:0.4,
     justifyContent: 'center',
     alignContent:"center",
