@@ -12,13 +12,12 @@ import {
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App({route, navigation}) {
   
-  const [howManyEat, setHowManyEat] = React.useState(0);
+  const [howManyEat, setHowManyEat] = React.useState(1);
   const [aftereatStatus, setAftereatStatus] = React.useState({
-    "양호해요": false,
+    "양호해요": true,
     "입맛이없어요" : false,
     "구내염" : false,
     "조기포만감" : false,
@@ -49,10 +48,11 @@ export default function App({route, navigation}) {
   return (
     <View style={styles.body}>
       <StatusBar style="dark" />
-      <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Rectangle4730}>
-        <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()} />
+        <View style={styles.Frame1691}>
+          <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()}/>
+        </View>
         <Text style={styles.Text001}>식사 기록</Text>
         
         <Text style={styles.Text002} onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }}>완료</Text>
@@ -200,8 +200,8 @@ export default function App({route, navigation}) {
           </View>
       </View>
       </ScrollView>
-      </SafeAreaView>
     </View>
+    
   );
 }
 
@@ -212,11 +212,11 @@ const styles = StyleSheet.create({
   },
   Rectangle4730: {
     position: 'relative',
-    height: 70,
+    height: Dimensions.get('window').height/12,
     backgroundColor: "white",
     width: Dimensions.get('window').width,    
     justifyContent: "center",
-    marginTop:20,
+    marginTop: Dimensions.get('window').height/22,
   },
   arrowmagin: {
     marginLeft: 10,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   Rectangle4767: {
-    marginTop: 5,
+    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 450,
     backgroundColor: '#ffffff',
@@ -282,6 +282,18 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
+  Frame1691: {
+    width: 50,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   Frame164: {
     width: Dimensions.get('window').width/2.8,
     height: 40,
@@ -299,7 +311,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Rectangle4734: {
-    marginTop: 5,
+    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 500,
     backgroundColor: '#ffffff',

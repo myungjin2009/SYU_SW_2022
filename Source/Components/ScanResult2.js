@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5E5E5',
   },
   Rectangle4730: {
-    marginTop: 40,
+    marginTop: Dimensions.get('window').height/22,
     width: Dimensions.get('window').width,
     height: 70,
     backgroundColor: '#ffffff',

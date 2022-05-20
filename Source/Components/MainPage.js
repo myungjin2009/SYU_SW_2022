@@ -19,6 +19,8 @@ import { AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
+import Flatdumpling from "../image/flatdumpling.png";
+import Porkcutletcurry from "../image/Porkcutletcurry.png";
 
 function clickBtnFunction(navigation){
     /* 코드 작성 */
@@ -167,10 +169,10 @@ function clickBtnFunction(navigation){
                         </View>
                     </View>
                     <View style={styles.Rectangle4750}>
-                        <View style={{flex: 1.2}}>
-                            <Image source={"../image/Flatdumpling.JPG"} style={{width: "100%", height: "100%"}} />
+                        <View style={{...styles.Rectangle47501, flex: 1.2}}>
+                            <Image source={Flatdumpling} style={styles.image} />
                         </View>
-                        <View style={{flex: 2.3, backgroundColor: '#FFFFFF'}}>
+                        <View style={{...styles.Rectangle47502, flex: 2.3}}>
                             <View style={{...styles.bodyrow, alignItems: 'center'}}>
                                 <Text style={{fontSize: 20, color: '#3D3B4C', marginLeft: 15}}>납작 만두</Text>
                                 <Text style={{fontSize: 15, color: '#888888', marginLeft: 10}}>오전 8:47</Text>
@@ -189,6 +191,7 @@ function clickBtnFunction(navigation){
                                 <MaterialIcons name="keyboard-arrow-right" size={15} color="#888888" />
                         </View>
                     </View>
+                    
                     <View style={styles.bodyrow}>
                         <View style={styles.Frame170}>
                             <ProgressBar progress={0.17} color="#6C6EC9" style={styles.bar}/>
@@ -203,11 +206,12 @@ function clickBtnFunction(navigation){
                             <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>지방 12%</Text>
                         </View>
                     </View>
-                    <View style={{...styles.Rectangle4750, marginTop: 30}}>
-                        <View style={{flex: 1.2, backgroundColor: 'red'}}>
-                            <Image source={"../image/porkcutletcurry.jpeg"} style={{width: "100%", height: "100%"}} />
+
+                    <View style={{...styles.Rectangle4750}}>
+                        <View style={{...styles.Rectangle47501, flex: 1.2}}>
+                            <Image source={Porkcutletcurry} style={styles.image} />
                         </View>
-                        <View style={{flex: 2.3}}>
+                        <View style={{...styles.Rectangle47502, flex: 2.3}}>
                             <View style={{...styles.bodyrow, alignItems: 'center'}}>
                                 <Text style={{fontSize: 20, color: '#3D3B4C', marginLeft: 15}}>돈까스 카레</Text>
                                 <Text style={{fontSize: 15, color: '#888888', marginLeft: 10}}>오후 12:05</Text>
@@ -225,7 +229,8 @@ function clickBtnFunction(navigation){
                                 <Text style={{fontSize: 15, color: '#888888'}}>수정 </Text>
                                 <MaterialIcons name="keyboard-arrow-right" size={15} color="#888888" />
                         </View>
-                    </View>
+                    </View>         
+
                     <View style={styles.bodyrow}>
                         <View style={styles.Frame170}>
                             <ProgressBar progress={0.35} color="#6C6EC9" style={styles.bar}/>
@@ -490,8 +495,35 @@ function clickBtnFunction(navigation){
         width: 6,
         },
         
-    },cal:{
+    },
+    cal:{
             width: "100%",
             height: "100%",
-        }
+        
+    },
+    Rectangle47501: {
+        width: Dimensions.get('window').width/1.1,
+        height: Dimensions.get('window').height/7,
+        backgroundColor: '#ffffff',
+        borderStyle: 'solid',
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 10,
+    },
+    Rectangle47502: {
+        width: Dimensions.get('window').width/1.1,
+        height: Dimensions.get('window').height/7,
+        backgroundColor: '#ffffff',
+        borderStyle: 'solid',
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        justifyContent: 'center',
+    },
+    image: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        borderBottomLeftRadius: 10,
+        borderTopLeftRadius: 10,
+    },
 });
