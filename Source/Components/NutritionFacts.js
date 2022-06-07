@@ -1,23 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { 
   StyleSheet, 
   Text,
-  View, 
+  View,
   Dimensions,
   ScrollView, 
   TouchableOpacity,
   Image,
+  Button,
+  Switch,
 } from 'react-native';
 import { AntDesign, MaterialIcons,SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { getDateEasy } from './../modules/time';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+
 
 export default function App({route, navigation}) {
 
-  const [howManyEat, setHowManyEat] = React.useState(0);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [datePickerVisible, setDatePickerVisible] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisible(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisible(false);
+  };
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date);
+    hideDatePicker();
+  };
+  
+  const [howManyEat, setHowManyEat] = React.useState(1);
   const [aftereatStatus, setAftereatStatus] = React.useState({
     "양호해요": true,
     "입맛이없어요" : false,
@@ -57,17 +75,22 @@ export default function App({route, navigation}) {
           <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()}/>
         </View>
         <Text style={styles.Text001}>식사 기록</Text>
-        
-        <Text style={styles.Text002} onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }}>완료</Text>
+        <Text onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }} style={styles.Text002}>완료</Text>          
       </View>
       
       <View style={styles.Rectangle4734}>
         <View style={styles.Frame145}>
-          <Text style={{fontSize: 18, marginLeft:14}}>{date}</Text>
-          <TouchableOpacity>
-            <SimpleLineIcons style={{marginRight: 14}} name="pencil" size={24} color="black" />
-          </TouchableOpacity>
+        <Button title={selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'} onPress={showDatePicker} />
+        <DateTimePickerModal
+          date={selectedDate}
+          isVisible={datePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+          isDarkModeEnabled
+        />
         </View>
+
         <View style={styles.body3}>
           <View style={{...styles.Imagebox}}>
             <Image
@@ -85,6 +108,8 @@ export default function App({route, navigation}) {
             
           </View>
         </View>
+
+
         <Text style={styles.Text003}>전체 섭취량</Text>
         <View style={styles.Nutrition}>
           <AnimatedCircularProgress
@@ -246,7 +271,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   Rectangle4767: {
-    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 450,
     backgroundColor: '#ffffff',
@@ -316,6 +340,7 @@ const styles = StyleSheet.create({
   },
   Rectangle4734: {
     marginTop: 15,
+    marginBottom: 15,
     width: Dimensions.get('window').width,
     height: 500,
     backgroundColor: '#ffffff',

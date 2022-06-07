@@ -15,13 +15,15 @@ export default function App({navigation}) {
 
     ////////////////////////////////////
 
-
   useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+    navigation.addListener('focus', () => {
+      setHasPermission(null);
+      (async () => {
+        const { status } = await Camera.requestCameraPermissionsAsync();
+        setHasPermission(status === 'granted');
+      })();
+    });
+  },[]);
 
   const snap = async () => {
     if (camera) {

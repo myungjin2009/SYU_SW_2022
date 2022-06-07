@@ -9,8 +9,6 @@ import ScanFood from './Components/ScanFood';
 import ScanResults from './Components/ScanResult';
 import NutritionFacts from './Components/NutritionFacts';
 import ScanResults2 from './Components/ScanResult2';
-import LoginScreen from './Components/login'
-
 
 
 const Stack = createStackNavigator();
@@ -26,7 +24,6 @@ export default function App() {  //initialRouteName 나중에 main으로 바꿔�
         <Stack.Screen name='ScanResults' component={ScanResults} options={{headerShown:false}}/>
         <Stack.Screen name='NutritionFacts' component={NutritionFacts} options={{headerShown:false}} />
         <Stack.Screen name='ScanResults2' component={ScanResults2} options={{headerShown:false}} />
-        <Stack.Screen name='LoginScreen' component={LoginScreen} options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
