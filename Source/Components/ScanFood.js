@@ -11,9 +11,6 @@ export default function App({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);   //카메라 권한
   const [type, setType] = useState(Camera.Constants.Type.back); //카메라 방향, 지금은 미사용
   const [camera, setCamera] = useState(null);
-  
-
-    ////////////////////////////////////
 
   useEffect(() => {
     navigation.addListener('focus', () => {
